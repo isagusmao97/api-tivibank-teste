@@ -24,6 +24,7 @@ async deposito(id:string, quantia:number){
 }
 
 async saque(id:string, quantia:number){
+    console.log(id,quantia)
     const conta = await this.prisma.conta.findUnique({
         where:{
             id,
@@ -45,13 +46,9 @@ async saque(id:string, quantia:number){
     });
 }
 
-async getSaldo(id:string){
-    const conta = await this.prisma.conta.findUnique({
-        where:{
-            id,
-        },
-    });
-    return conta.saldo;
+async getConta(){
+    const conta = await this.prisma.conta.findFirst();
+    return conta;
 }
 
 }
